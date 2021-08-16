@@ -23,10 +23,21 @@ public class EmployeeController {
         return employeeRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<EmployeeDAO> findEmployeeById(@PathVariable String id){
+        return employeeRepository.findById(Long.valueOf(id));
+    }
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public Mono<Void> deleteAllEmployee(){
         return employeeRepository.deleteAll();
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Void> deleteEmployeeById(@PathVariable String id) {
+        return employeeRepository.deleteById(Long.valueOf(id));
     }
 
     @PostMapping
